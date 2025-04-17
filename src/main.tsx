@@ -1,17 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { StrictMode } from "react"
+import { createRoot } from "react-dom/client"
+import App from "./App.tsx"
+
+// Why Did You Render Helper
+// import "./wdyr"
 
 const prepare = async (): Promise<void> => {
-    const { worker } = await import('./mocks/browser')
-    worker.start()
+  // if (import.meta.env.DEV) {
+  //   const { worker } = await import("./mocks/browser")
+  //   void worker.start()
+  // }
 }
 
-await prepare().then(() =>
-    ReactDOM.createRoot(document.getElementById('root')!).render(
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+const rootDom = document.getElementById("root")
+if (rootDom !== null) {
+  await prepare().finally(() => {
+    createRoot(rootDom).render(
+      <StrictMode>
+        <App />
+      </StrictMode>
     )
-)
+  })
+}

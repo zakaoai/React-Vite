@@ -1,15 +1,14 @@
-import './App.css'
-
-import { RouterProvider } from 'react-router-dom'
-import { router } from './routes/index.ts'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
-const queryClient = new QueryClient()
+import { ColorModeProvider } from "@/context/ColorModeProvider"
+import { SnackbarProvider } from "notistack"
+import { RouterProvider } from "react-router"
+import router from "./routes"
 
 const App = () => (
-    <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-    </QueryClientProvider>
+  <SnackbarProvider>
+    <ColorModeProvider>
+      <RouterProvider router={router} />
+    </ColorModeProvider>
+  </SnackbarProvider>
 )
 
 export default App

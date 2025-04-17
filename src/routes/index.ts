@@ -1,5 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements } from "react-router"
 
-import Root from './Root'
+import AppRouter from "./AppRouter"
 
-export const router = createBrowserRouter([{ path: '*', Component: Root }])
+const router = createBrowserRouter(createRoutesFromElements(AppRouter()))
+
+export default router
